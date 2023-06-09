@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f3f3f3;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+#game-board {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 40px auto;
+  background-color: #ddd;
+  border: 1px solid #999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.cell {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #777;
+  border: 1px solid #999;
+  box-sizing: border-box;
+}
+
+#snake-head {
+  background-color: #333;
+}
+
+#food {
+  background-color: #f00;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
