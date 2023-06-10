@@ -2,6 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get the game board element
   const gameBoard = document.getElementById('game-board')
 
+  // Get the control buttons
+  const upButton = document.getElementById('up-button')
+  const leftButton = document.getElementById('left-button')
+  const rightButton = document.getElementById('right-button')
+  const downButton = document.getElementById('down-button')
+  const resetButton = document.getElementById('reset-button')
+
+  // Get the score element
+  const scoreElement = document.getElementById('score-value')
+
   // Define the size of each cell and the board size
   const cellSize = 20
   const boardSize = 20
@@ -18,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Variable to hold the interval ID for the game loop
   let intervalId
+
+  // Variable to keep track of the score
+  let score = 0
 
   // Function to create a cell element at the specified coordinates with a given id
   function createCell(x, y, id) {
@@ -59,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (head.x === food.x && head.y === food.y) {
       // If the snake's head reaches the food, generate new food
       generateFood()
+      score++
+      scoreElement.textContent = score
     } else {
       // If the snake did not eat the food, remove the last segment
       snake.pop()
@@ -110,10 +125,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Function to handle button click events and update the snake's direction
+  function handleButtonClick(direction) {
+    if (direction === 'up' && dy !== 1) {
+      dx = 0
+      dy = -1
+    } else if (direction === 'down' && dy !== -1) {
+      dx = 0
+      dy = 1
+    } else if (direction === 'left' && dx !== 1) {
+      dx = -1
+      dy = 0
+    } else if (direction === 'right' && dx !== -1) {
+      dx = 1
+      dy = 0
+    }
+  }
+
+  // Function to reset the game
+  function resetGame() {
+    clearInterval(intervalId)
+    snake = [{ x: 10, y: 10 }]
+    dx = 0
+    dy = 0
+    score = 0
+    scoreElement.textContent = score
+    clearBoard()
+    drawSnake()
+    drawFood()
+    startGame()
+  }
+
   // Function to start the game
   function startGame() {
-    // Add event listener for keydown to handle arrow key presses
+    // Add event listeners for keydown and button clicks
     document.addEventListener('keydown', handleKeyPress)
+    upButton.addEventListener('click', () => handleButtonClick('up'))
+    leftButton.addEventListener('click', () => handleButtonClick('left'))
+    rightButton.addEventListener('click', () => handleButtonClick('right'))
+    downButton.addEventListener('click', () => handleButtonClick('down'))
+    resetButton.addEventListener('click', resetGame)
 
     // Start the game loop with a specified interval
     intervalId = setInterval(() => {

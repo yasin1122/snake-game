@@ -5,35 +5,21 @@
     <link
       rel="stylesheet"
       href="styles.css" />
-    <style>
-      #game-board {
-        position: relative;
-        width: 400px;
-        height: 400px;
-        background-color: #ddd;
-        border: 1px solid #999;
-      }
-
-      .cell {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: #777;
-        border: 1px solid #999;
-      }
-
-      #snake-head {
-        background-color: #333;
-      }
-
-      #food {
-        background-color: #f00;
-      }
-    </style>
   </head>
   <body>
     <h1>Snake Game</h1>
     <div id="game-board"></div>
+    <div id="controls">
+      <button id="up-button">↑</button>
+      <br />
+      <button id="left-button">←</button>
+      <button id="right-button">→</button>
+      <br />
+      <button id="down-button">↓</button>
+      <br />
+      <button id="reset-button">Reset</button>
+    </div>
+    <div id="score">Score: <span id="score-value">0</span></div>
 
     <script src="snake.js"></script>
   </body>
